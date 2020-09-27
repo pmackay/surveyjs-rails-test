@@ -13,12 +13,12 @@
 //  ]
 // }
 
-const application = Stimulus.Application.start()
+var application = Stimulus.Application.start()
 
 application.register("survey", class extends Stimulus.Controller {
   connect() {
     console.log("Hello, Stimulus!", this.element);
-    const surveyJSON = this.data.get('form');
+    var surveyJSON = this.data.get('form');
     var survey = new Survey.Model(surveyJSON, "surveyContainer");
   }
 })
