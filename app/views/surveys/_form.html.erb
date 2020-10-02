@@ -1,19 +1,23 @@
-<%= form_with(model: survey, local: true) do |form| %>
-  <% if survey.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+<div data-controller="survey-creator">
+  <%= form_with(model: survey, local: true) do |form| %>
+    <% if survey.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
 
-      <ul>
-      <% survey.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% survey.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div id="surveyCreatorContainer"></div>
+
+    <%= text_area(:survey, :form, id: 'surveyJSONField') %>
+
+    <div class="actions">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <%= text_area(:survey, :form) %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

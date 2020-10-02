@@ -22,3 +22,23 @@ application.register("survey", class extends Stimulus.Controller {
     var survey = new Survey.Model(surveyJSON, "surveyContainer");
   }
 })
+
+application.register("survey-creator", class extends Stimulus.Controller {
+  connect() {
+    console.log("Launch survey creator", this.element);
+    SurveyCreator.StylesManager.applyTheme("default");
+    var options = {showEmbededSurveyTab: true};
+    var surveyCreator = new SurveyCreator.SurveyCreator("surveyCreatorContainer", options);
+    surveyCreator.saveSurveyFunc = this.onSave;
+
+    var element = document.getElementById('surveyJSONField');
+    surveyCreator.text = element.value;
+  }
+
+  onSave() {
+    console.log("Survey save", this);
+    var yourNewSurveyJSON = this.text;
+    var element = document.getElementById('surveyJSONField');
+    element.value = yourNewSurveyJSON;
+  }
+})
